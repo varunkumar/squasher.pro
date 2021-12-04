@@ -122,13 +122,13 @@ def get_summary(content, summary_lines, header_message = "", engine_preference =
             return engine.summarize(content, summary_lines, header_message)
 
 
-def suggest_reply_to_conversation(content):
+def suggest_reply_to_conversation(content, suggestion):
         data = f"""
                     Below is a conversation:
 
                     {content}
 
-                    Please suggest a reply for the conversation
+                    {suggestion}
                 """
         logger.info("Requesting OpenAI for suggest a reply for the conversation %s" % data)
         response = openai.Completion.create(
@@ -141,7 +141,7 @@ def suggest_reply_to_conversation(content):
                     presence_penalty=0.0,
             )
         suggestion = response.choices[0].text
-        logger.info("Suggested response is: %s"% suggestion)
+        logger.info("Suggested response is: %s" % suggestion)
         return suggestion
 
 

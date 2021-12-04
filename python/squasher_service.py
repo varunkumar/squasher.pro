@@ -34,7 +34,12 @@ slack_event_adapter = SlackEventAdapter(
 client = slack.WebClient(slack_token)
 users = { 'UL9MC3NJC' : 'Francis' , 'U016DGCKK0C' : 'Apoorva', 'U1D0YS3HC' : 'Varun' }
 
-
+# Request
+#{
+#    content: string,
+#    summary_lines: int
+#}
+# Responds with a summary of the content
 @app.route("/squashit", methods=["POST"])
 def summarize():
     try:
@@ -47,6 +52,7 @@ def summarize():
         logger.error(e)
         return Response(), 500
 
+#Slack bot request that reads the messages of a thread and replies back with a short summary
 @app.route("/slack-summarize", methods=["POST"])
 def slack_summarize():
     slack_request = request.form
@@ -88,7 +94,7 @@ def process_slack_summarize(slack_request):
         logger.error(e)
 
 
-
+#Receives feedback that can be used to train data
 @app.route("/feedback", methods=["POST"])
 def feedback():
         data = request.form
@@ -105,11 +111,16 @@ def feedback():
 def health_check():
         return Response(), 200
 
+# Gives back suggestions on the content based on the request in the suggestion
+#{
+#  "content" : "Full mail thread"
+#  "suggestion" : "Suggest possible responses for 'Person who has to respond' "
+#}
 @app.route("/suggest-reply", methods=["POST"])
 def suggest_reply():
         data = request.form
         logger.info(data)
-        response = suggest_reply_to_conversation(data["content"])
+        response = suggest_reply_to_conversation(data["content"], data["suggestion"])
         logger.info(response)
         return Response(response), 200
 
