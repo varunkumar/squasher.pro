@@ -9,7 +9,7 @@ Squasher.Pro is powered by
 
 **OpenAI**
 
-A general artificial intelligence running based on the GPT-3 model. Visit Markup : [OpenAI](https://openai.com/ "Open AI") to know more.
+A general artificial intelligence running based on the GPT-3 model. Visit : [OpenAI](https://openai.com/ "Open AI") to know more.
 
 **BERT**
 
@@ -24,14 +24,14 @@ Uses abstractive summarization is the technique of generating a summary of a tex
 Abstractive summaries need to identify the key points and then add a generative element. \
 It does this using transformer models (A transformer is a deep learning model that adopts the mechanism of self-attention, differentially weighting the significance of each part of the input data.)
 
-Encoder-Decoder Architecture  (Recurrent Neural Networks (RNNs), i.e. Gated Recurrent Neural Network (GRU) or Long Short Term Memory (LSTM)) \
+Encoder-Decoder Architecture  (Recurrent Neural Networks (RNNs), i.e. Gated Recurrent Neural Network (GRU) or Long Short Term Memory (LSTM))
 
-    -> Training: \
-		1) An Encoder Long Short Term Memory model (LSTM) reads the entire input sequence wherein, at each timestep, one word is fed into the encoder. It then processes the information at every timestep and captures the contextual information present in the input sequence. \
+    -> Training:
+		1) An Encoder Long Short Term Memory model (LSTM) reads the entire input sequence wherein, at each timestep, one word is fed into the encoder. It then processes the information at every timestep and captures the contextual information present in the input sequence.
 		2) The decoder is also an LSTM network which reads the entire target sequence word-by-word and predicts the same sequence offset by one timestep. The decoder is trained to predict the next word in the sequence given the previous word.
 
-	-> Inference: \
-		1) Encode the entire input sequence and initialize the decoder with internal states of the encoder \
+	-> Inference:
+		1) Encode the entire input sequence and initialize the decoder with internal states of the encoder
 		2) The decoder then tries to predict the word of the next timestamp and the word with the highest probability is selected.
 
 
