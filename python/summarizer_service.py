@@ -8,6 +8,8 @@ from dataclasses import dataclass
 import os
 from dotenv import load_dotenv
 from pathlib import Path
+import csv
+from transformers import PegasusForConditionalGeneration, PegasusTokenizer
 
 logging.basicConfig(filename="logs/summarizer_service.log",
                     format='%(asctime)s %(message)s',
@@ -60,6 +62,21 @@ class XLNet(Engine):
                 logger.info("Summary is: %s" % xl_net_summary)
                 return response
 
+
+class Pegasus(Engine):
+
+        def summarize(self, content, summary_lines, header_message = ""):
+                model_name = 'google/pegasus-xsum'
+                device = 'cuda' if torch.cuda.is_available() else 'cpu'
+                tokenizer = PegasusTokenizer.from_pretrained(model_name)
+                model = PegasusForConditionalGeneration.from_pretrained(model_name).to(device)
+                batch = tokenizer(src_text, truncation=True, padding='longest', max_output=1024, return_tensors="pt").to(device)
+                translated = model.generate(**batch)
+                tgt_text = tokenizer.batch_decode(translated, skip_special_tokens=True)
+                response = SummaryReport(tgt_text[0], "XLNet", "")
+                logger.info("Summary is: %s" % tgt_text[0])
+                return response
+
 class OpenAi(Engine):
 
         def summarize(self, content, summary_lines, header_message = ""):
@@ -96,20 +113,24 @@ def get_engine(engine_name):
             return XLNet()
         elif engine_name == "OpenAi":
             return OpenAi()
+        elif engine_name == "Pegasus":
+            return Pegasus()
         else:
             raise ValueError(engine_name + " does not exist")
 
 def get_random_engine():
         print("Choosing a random engine")
         engine_id = random.choice([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 14, 21, 13, 19, 102, 69, 11, 12, 15, 16, 17, 18, 19, 20])
-        if engine_id % 4 == 0:
+        if engine_id % 5 == 0:
             return Bert()
-        elif engine_id % 4 == 1:
+        elif engine_id % 5 == 1:
             return Gpt2()
-        elif engine_id % 4 == 2:
+        elif engine_id % 5 == 2:
             return XLNet()
-        elif engine_id % 4 == 3:
+        elif engine_id % 5 == 3:
             return OpenAi()
+        elif engine_id & 5 == 4:
+            return Pegasus()
 
 
 
@@ -143,6 +164,17 @@ def suggest_reply_to_conversation(content, suggestion):
         suggestion = response.choices[0].text
         logger.info("Suggested response is: %s" % suggestion)
         return suggestion
+
+
+def train_engine(content, original_summary, suggested_summary, engine):
+        fields = ['content', 'original_summary', 'suggested_summary', 'engine']
+        rows = [ [content, original_summary, suggested_summary, engine]]
+        filename = "feedback_dataset.csv"
+        logger.info("Feedback received")
+        with open(filename, 'w') as csvfile:
+            csvwriter = csv.writer(csvfile)
+            csvwriter.writerow(fields)
+            csvwriter.writerows(rows)
 
 
 @dataclass
