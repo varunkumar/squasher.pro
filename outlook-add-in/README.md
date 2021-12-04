@@ -1,6 +1,6 @@
 # Squasher.Pro Outlook add-in
 
-<img src="assets/logo.png" width="300px" height="300px"/>
+<img src="assets/logo-filled.png" width="300px" height="300px"/>
 
 ## How to use?
 
