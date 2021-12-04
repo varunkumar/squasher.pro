@@ -98,7 +98,12 @@ Data Params:
 ```
 Success Response: \
 Code: 200 \
-Content: {} \
+Content:
+```
+{
+    response: string
+}
+```
 Error Response: \
 Code: 500 \
 Content: { error : "Internal Server Error " }

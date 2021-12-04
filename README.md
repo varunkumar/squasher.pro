@@ -17,7 +17,7 @@ Squasher.Pro is a summarization suite and personal productivity improvement tool
 **Supported on** 
 * Outlook Web as add-in
 * Outlook Desktop as add-in
-* Slack through a bot
+* [Slack](https://github.com/varunkumar/squasher.pro/blob/main/python/README.md "Slack README") through a bot
 * Chrome extension
 
 
@@ -28,3 +28,5 @@ Squasher.Pro is a summarization suite and personal productivity improvement tool
 * XLNet
 
 
+Built with :heartpulse: @ Arcesium Hackathon 2021
+Contributors: @varunkumar @francisjacob
