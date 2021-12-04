@@ -21,12 +21,13 @@ Squasher.Pro is a summarization suite and personal productivity improvement tool
 * Chrome extension
 
 
-**Powered by**
+**[Powered by](https://github.com/varunkumar/squasher.pro/tree/main/python "Powered by")**
 * OpenAI
 * BERT
 * GPT-2
 * XLNet
 
+**[API contract](https://github.com/varunkumar/squasher.pro/blob/main/python/api_contract_spec.md "API contract")**
 
 Built with :heartpulse: @ Arcesium Hackathon 2021
 Contributors: @varunkumar @francisjacob
