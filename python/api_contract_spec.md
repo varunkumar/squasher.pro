@@ -1,4 +1,4 @@
-**GET /squash-it** \
+**POST /squash-it** \
 Returns a summary of the provided input 
 
 URL params: none \
@@ -35,7 +35,7 @@ Retrieves the conversation on the slack thread and writes a summary to the threa
 
 URL params: none \
 Headers: Content-Type: application/json \
-Data Params: 
+Data Params:
 ```
 {
     payload: SlackPayload
@@ -62,6 +62,38 @@ Data Params:
     original_summary: string,
     suggested_summary: string,
     engine: string,
+}
+```
+Success Response: \
+Code: 200 \
+Content: {} \
+Error Response: \
+Code: 500 \
+Content: { error : "Internal Server Error " }
+
+
+<br>
+<br>
+
+**POST /health-check**
+Checks the health of the squasher service \
+URL params: none \
+Headers: Content-Type: application/json \
+Data Params: {}
+Success Response: \
+Code: 200 \
+Content: {}
+
+
+**POST /suggest-reply**
+Suggests replies for mail threads \
+URL params: none \
+Headers: Content-Type: application/json \
+Data Params:
+```
+{
+    content: string,
+    requested_suggestion: string,
 }
 ```
 Success Response: \
