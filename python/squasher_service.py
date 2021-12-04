@@ -14,6 +14,7 @@ import openai
 from summarizer_service import SummaryReport
 import threading
 from summarizer_service import suggest_reply_to_conversation
+from summarizer_service import train_engine
 
 logging.basicConfig(filename="logs/squasher_service.log",
                             format='%(asctime)s %(message)s',
@@ -124,9 +125,6 @@ def suggest_reply():
         logger.info(response)
         return Response(response), 200
 
-
-def train_engine(content, original_summary, suggested_summary, engine):
-        logger.info("Feedback received")
 
 if __name__ == "__main__":
         app.run(debug=True, host="0.0.0.0", port=7000)
