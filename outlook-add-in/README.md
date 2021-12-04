@@ -4,7 +4,7 @@
 
 ## How to use?
 
-Office add-ins have plenty of options for deployment and publishing the add-in. But, none of that seems straightforward for internal distribution. For now, if you are interested in using this add-in, you will have to follow the developer steps below.
+Office add-ins have plenty of [options](https://docs.microsoft.com/en-us/office/dev/add-ins/publish/publish) for deployment and publishing the add-in. But, none of that seems straightforward for internal distribution. For now, if you are interested in using this add-in, you will have to follow the developer steps below.
 
 ## Developer setup
 
