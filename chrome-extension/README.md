@@ -1,9 +1,12 @@
 # Squasher.Pro Chrome extension
 
-![Squasher.Pro](src/assets/img/logo.png)
+<img src="src/assets/img/logo.png" width="300px" height="300px"/>
+
 ## How to use?
 
-Click on the extension icon to activate the extension. The extension will squash the current page for you. Please help with the feedback to improve the suggestions. 
+Click on the extension icon to activate the extension. The extension will squash the current page for you. Please help with the feedback to improve the suggestions.
+
+<img src="demo/extension.png" width="500px" height="100%"/>
 
 ## Developer setup
 
