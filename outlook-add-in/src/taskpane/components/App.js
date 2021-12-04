@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import PropTypes from "prop-types";
 import * as React from "react";
 /* eslint-enable no-unused-vars */
@@ -13,6 +14,28 @@ require("./../../../assets/icon-64.png");
 require("./../../../assets/icon-80.png");
 require("./../../../assets/icon-128.png");
 
+const cleanupMessage = (message) => {
+  let content = message;
+  content = content.replace(/^\s*\n/gm, "");
+  content = content.replace(/(\r\n|\r|\n){2,}/g, "$1\n");
+  content = content.replace(/^\t*/gm, "");
+
+  /*let from = content.match(/From: .*([a-zA-Z0-9._-]+)@[a-zA-Z0-9._-]+\.[a-zA-Z0-9._-]+.*\n/g)
+  let to = content.match(/To: .*\n/g)
+  let sent = content.match(/Sent: .*\n/g)
+  console.log(content)
+  console.log(from)
+  console.log(to)
+  console.log(sent)*/
+  content = content.replace(/To: .*\n/g, "");
+  content = content.replace(/Cc: .*\n/g, "");
+  content = content.replace(/Bcc: .*\n/g, "");
+  content = content.replace(/Subject: .*\n/g, "");
+  content = content.replace(/Sent: .*\n/g, "");
+  content = content.replace(/From: .*<([a-zA-Z0-9._-]+)@[a-zA-Z0-9._-]+\.[a-zA-Z0-9._-]+.*\n/g, "$1 : ");
+  // console.log(content)
+  return content;
+};
 class Popup extends React.Component {
   state = {
     loading: true,
@@ -28,10 +51,12 @@ class Popup extends React.Component {
     let item = Office.context.mailbox.item;
     item.body.getAsync(Office.CoercionType.Text, async (asyncResult) => {
       let content = asyncResult.value.trim();
-      if (content.length > 1000) {
-        content = content.substring(0, 1000);
+      content = cleanupMessage(content);
+      content = item.from.emailAddress + " : " + item.subject + "\n" + content;
+      if (content.length > 2000) {
+        console.log(`Content is being trimmed from ${content.length}`);
+        content = content.substring(0, 2000);
       }
-      console.log(content);
       this.setState({ content });
       let formData = new FormData();
       formData.append("content", content);
