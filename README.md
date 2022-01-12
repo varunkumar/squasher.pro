@@ -32,4 +32,4 @@ Squasher.Pro is a summarization suite and personal productivity improvement tool
 **[API contract](https://github.com/varunkumar/squasher.pro/blob/main/python/api_contract_spec.md 'API contract')**
 
 Built with :heartpulse: @ Arcesium Hackathon 2021
-Contributors: @varunkumar @francisjacob
+Contributors: @varunkumar @francisjacob. Won `The most creative hack` award in the hackathon
