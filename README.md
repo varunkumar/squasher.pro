@@ -1,10 +1,10 @@
 **Squasher.Pro**
 
-Tired of spending all your waking hours going through countless mails, tickets, slack threads and just tons and tons of information?
+Tired of spending all your waking hours going through countless mails, tickets, slack threads and just tons and tons of information? 
 
 <img src="chrome-extension/src/assets/img/logo.png" width="300px" height="300px"/>
 
-Squasher.Pro is a summarization suite and personal productivity improvement toolkit that allows you to summarize mails, wikis, slackthreads, etc. into concise, easy to digest content so you can free yourself from information overload.
+Squasher.Pro is a summarization suite and personal productivity improvement toolkit that allows you to summarize mails, wikis, slackthreads, etc. into concise, easy to digest content so you can free yourself from information overload. [Demo](https://youtu.be/kov5EL8xpX0)
 
 **Features supported**
 
